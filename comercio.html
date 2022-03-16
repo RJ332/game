@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/comerciostyle.css">
+    <script src="JS/comerciojavas.js"></script>
+</head>
+<body>
+  <div id="game">
+    <div class="stats">
+        <div class="gray big" id="qmadeira">0</div><div class="rate1 normal">Madeira</div>
+        <div class="yellow big" id="qenergia">0</div><div class="rate2 normal">Energia</div>
+        <div class="red big" id="qrubi">0</div><div class="rate3 normal">Rubis</div>
+        <div class="dgray big" id="qpedra">0</div><div class="rate4 normal">Pedra</div>
+        <div id="demo"></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+    </div>
+    <div class="inc btn" onclick="voltar()">Voltar</div>
+    <!--<div class="cheat btn">Cheat</div>-->
+    <div class="menu-wrapper">
+        <div class="upgrades menu">
+            <div class="title">Produtos:</div>
+            <div class="viewport">
+              <!-- DEMO CONTENT -->
+              <main class="main" role="main">
+                <div class="gallery" aria-label="gallery">
+                  <a onclick="produto1()" class="gallery__item"><img src="Imagens/energia.png" width="50%" alt="energia"/><p id="preco1">Custo: <div id="img1"></div></p><p class="p1"></p></a>
+                  <a onclick="produto2()" class="gallery__item"><img src="Imagens/madeira.png" width="50%" alt="madeira"/><p id="preco2">Custo: <div id="img2"></div></p><p class="p2"></p></a>
+                  <a onclick="produto3()" class="gallery__item"><img src="Imagens/pedra.png" width="50%" alt="pedra"/><p id="preco3">Custo: <div id="img3"></div></p><p class="p3"></p></a>
+                  <a onclick="produto4()" class="gallery__item"><img src="Imagens/rubi.png" width="50%" alt="rubi"/><p id="preco4">Custo: <div id="img4"></div></p><p class="p4"></p></a>
+                  <a onclick="produto5()" class="gallery__item"><img src="Imagens/energia.png" width="50%" alt="energia"/><p id="preco5">Custo: <div id="img5"></div></p><p class="p5"></p></a>
+                  <a onclick="produto6()" class="gallery__item"><img src="Imagens/madeira.png" width="50%" alt="madeira"/><p id="preco6">Custo: <div id="img6"></div></p><p class="p6"></p></a>
+                  <a onclick="produto7()" class="gallery__item"><img src="Imagens/pedra.png" width="50%" alt="pedra"/><p id="preco7">Custo: <div id="img7"></div></p><p class="p7"></p></a>
+                  <a onclick="produto8()" class="gallery__item"><img src="Imagens/rubi.png" width="50%" alt="rubi"/><p id="preco8">Custo: <div id="img8"></div></p><p class="p8"></p></a>
+                </div>
+              </main>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<script>
+
+  var playername = sessionStorage.getItem("Nome_do_jogador");
+  
+
+    if (playername == null) {
+      window.location = "login.html";
+    }
+
+    var qenergia = sessionStorage.getItem("QEnergia");
+    document.getElementById('qenergia').innerHTML = qenergia;
+
+    var qpedra = sessionStorage.getItem("QPedras");
+    document.getElementById('qpedra').innerHTML = qpedra;
+
+    var qmadeira = sessionStorage.getItem("QMadeiras");
+    document.getElementById('qmadeira').innerHTML = qmadeira;
+
+    var qrubi = sessionStorage.getItem("QRubis");
+    document.getElementById('qrubi').innerHTML = qrubi;
+
+    var rn1 = sessionStorage.getItem("random1");
+    var textrn1 = rn1;
+    var rn1n = Number(textrn1);
+    rn1 = rn1n;
+    var rn2 = sessionStorage.getItem("random2");
+    var textrn2 = rn2;
+    var rn2n = Number(textrn2);
+    rn2 = rn2n;
+    var rn3 = sessionStorage.getItem("random3");
+    var textrn3 = rn3;
+    var rn3n = Number(textrn3);
+    rn3 = rn3n;
+    var rn4 = sessionStorage.getItem("random4");
+    var textrn4 = rn4;
+    var rn4n = Number(textrn1);
+    rn4 = rn4n;
+    var rn5 = sessionStorage.getItem("random5");
+    var textrn5 = rn5;
+    var rn5n = Number(textrn5);
+    rn5 = rn5n;
+    var rn6 = sessionStorage.getItem("random6");
+    var textrn6 = rn6;
+    var rn6n = Number(textrn6);
+    rn6 = rn6n;
+    var rn7 = sessionStorage.getItem("random7");
+    var textrn7 = rn7;
+    var rn7n = Number(textrn7);
+    rn7 = rn7n;
+    var rn8 = sessionStorage.getItem("random8");
+    var textrn8 = rn8;
+    var rn8n = Number(textrn8);
+    rn8 = rn8n;
+    
+    if((rn1 == null) && (rn2 == null) && (rn3 == null) && (rn4 == null) && (rn5 == null) && (rn6 == null) && (rn7 == null) && (rn8 == null)) {
+    //EnergiaColuna1
+    var rn1 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random1", rn1); 
+    //MadeiraColuna1
+    var rn2 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random2", rn2);
+    //PedraColuna1
+    var rn3 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random3", rn3);
+    //RubisColuna1
+    var rn4 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random4", rn4);
+    //EnergiaColuna2
+    var rn5 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random5", rn5);
+    //MadeiraColuna2
+    var rn6 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random6", rn6);
+    //PedraColuna2
+    var rn7 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random7", rn7);
+    //RubisColuna1
+    var rn8 = Math.floor(Math.random() * 100) + 1;
+    sessionStorage.setItem("random8", rn8);
+    }
+
+    //EnergiaColuna1
+if(rn1 < 32) {
+    document.getElementById('preco1').innerHTML =  "Custo: 100";  
+    document.getElementById('img1').innerHTML =  "<img src=\"Imagens/madeira.png\" id=\"image1\" width=\"5%\" alt=\"madeira\"/>";
+  } else if((rn1 >= 32) && (rn1 < 64)) {
+    document.getElementById('preco1').innerHTML =  "Custo: 100";
+    document.getElementById('img1').innerHTML =  "<img src=\"Imagens/pedra.png\" id=\"image1\" width=\"10%\" alt=\"pedra\"/>";  
+  } else if(rn1 >= 64) {
+    document.getElementById('preco1').innerHTML =  "Custo: 5"; 
+    document.getElementById('img1').innerHTML =  "<img src=\"Imagens/rubi.png\" id=\"image1\" width=\"3%\" alt=\"rubi\"/>";
+    document.getElementById("img1").style.top = "38%";
+    document.getElementById("img1").style.left = "15%";
+  }
+  
+//MadeiraColuna1
+  if(rn2 < 50) {
+    document.getElementById('preco2').innerHTML =  "Custo: 5";  
+    document.getElementById('img2').innerHTML =  "<img src=\"Imagens/rubi.png\" id=\"image2\" width=\"4%\" alt=\"rubi\"/>";
+    document.getElementById("img2").style.top = "38%";
+    document.getElementById("img2").style.left = "39%";
+  } else if(rn2 >= 50) {
+    document.getElementById('preco2').innerHTML =  "Custo: 100";  
+    document.getElementById('img2').innerHTML =  "<img src=\"Imagens/pedra.png\" id=\"image2\" width=\"10.5%\" alt=\"pedra\"/>";
+  }
+  
+//PedraColuna1
+  if(rn3 < 50) {
+    document.getElementById('preco3').innerHTML =  "Custo: 5";
+    document.getElementById('img3').innerHTML =  "<img src=\"Imagens/rubi.png\" id=\"image3\" width=\"6.5%\" alt=\"rubi\"/>";
+    document.getElementById("img3").style.top = "38%";
+    document.getElementById("img3").style.left = "63%";  
+  } else if(rn3 >= 50) {
+    document.getElementById('preco3').innerHTML =  "Custo: 100";
+    document.getElementById('img3').innerHTML =  "<img src=\"Imagens/madeira.png\" id=\"image3\" width=\"13%\" alt=\"madeira\"/>";
+  }
+  
+//RubisColuna1
+  if(rn4 < 50) {
+    document.getElementById('preco4').innerHTML =  "Custo: 100";  
+    document.getElementById('img4').innerHTML =  "<img src=\"Imagens/pedra.png\" id=\"image4\" width=\"40%\" alt=\"pedra\"/>";
+  } else if(rn4 >= 50) {
+    document.getElementById('preco4').innerHTML =  "Custo: 100";  
+    document.getElementById('img4').innerHTML =  "<img src=\"Imagens/madeira.png\" id=\"image4\" width=\"45%\" alt=\"madeira\"/>";
+  }
+  
+//EnergiaColuna2
+  if(rn5 < 32) {
+    document.getElementById('preco5').innerHTML =  "Custo: 100"; 
+    document.getElementById('img5').innerHTML =  "<img src=\"Imagens/madeira.png\" id=\"image5\" width=\"5%\" alt=\"madeira\"/>"; 
+  } else if((rn5 >= 32) && (rn5 < 64)) {
+    document.getElementById('preco5').innerHTML =  "Custo: 100"; 
+    document.getElementById('img5').innerHTML =  "<img src=\"Imagens/pedra.png\" id=\"image5\" width=\"10%\" alt=\"pedra\"/>";  
+  } else if(rn5 >= 64) {
+    document.getElementById('preco5').innerHTML =  "Custo: 5";
+    document.getElementById('img5').innerHTML =  "<img src=\"Imagens/rubi.png\" id=\"image5\" width=\"3%\" alt=\"rubi\"/>";
+    document.getElementById("img5").style.left = "85%";
+    document.getElementById("img5").style.left = "15%";
+  }
+  
+//MadeiraColuna2
+  if(rn6 < 50) {
+    document.getElementById('preco6').innerHTML =  "Custo: 5";
+    document.getElementById('img6').innerHTML =  "<img src=\"Imagens/rubi.png\" id=\"image6\" width=\"4%\" alt=\"rubi\"/>";
+    document.getElementById("img6").style.top = "85%";
+    document.getElementById("img6").style.left = "39%"; 
+  } else if(rn6 >= 50) {
+    document.getElementById('preco6').innerHTML =  "Custo: 100";  
+    document.getElementById('img6').innerHTML =  "<img src=\"Imagens/pedra.png\" id=\"image6\" width=\"10.5%\" alt=\"pedra\"/>";
+  }
+  
+//PedraColuna2
+  if(rn7 < 50) {
+    document.getElementById('preco7').innerHTML =  "Custo: 5";  
+    document.getElementById('img7').innerHTML =  "<img src=\"Imagens/rubi.png\" id=\"image7\" width=\"6.5%\" alt=\"rubi\"/>";
+    document.getElementById("img7").style.top = "85%";
+    document.getElementById("img7").style.left = "63%";
+  } else if(rn7 >= 50) {
+    document.getElementById('preco7').innerHTML =  "Custo: 100";
+    document.getElementById('img7').innerHTML =  "<img src=\"Imagens/madeira.png\" id=\"image7\" width=\"13%\" alt=\"madeira\"/>";  
+  }
+  
+//RubisColuna2
+  if(rn8 < 50) {
+    document.getElementById('preco8').innerHTML =  "Custo: 100";
+    document.getElementById('img8').innerHTML =  "<img src=\"Imagens/pedra.png\" id=\"image8\" width=\"40%\" alt=\"pedra\"/>";   
+  } else if(rn8 >= 50) {
+    document.getElementById('preco8').innerHTML =  "Custo: 100";
+    document.getElementById('img8').innerHTML =  "<img src=\"Imagens/madeira.png\" id=\"image8\" width=\"45%\" alt=\"madeira\"/>";  
+  }  
+
+</script> 
+</body>
+</html>

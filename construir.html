@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/constyle.css">
+    <script src="JS/conjavas.js"></script>
+</head>
+<body>
+    <div id="game">
+        <div class="stats">
+            <div class="gray big" id="qmadeira">0</div><div class="rate1 normal">Madeira</div>
+            <div class="yellow big" id="qenergia">0</div><div class="rate2 normal">Energia</div>
+            <div class="red big" id="qrubi">0</div><div class="rate3 normal">Rubi</div>
+            <div class="dgray big" id="qpedra">0</div><div class="rate4 normal">Pedra</div>
+            <div id="demo"></div>
+            <div class="progress-bar"><div class="progress"></div></div>
+        </div>
+        <div class="inc btn" onclick="voltar()">Voltar</div>
+        <!--<div class="cheat btn">Cheat</div>-->
+        <div class="menu-wrapper">
+            <div class="upgrades menu">
+                <div class="title">Casas:</div>
+                <div class="left">
+                    <div class="label">Upgrades na Cidade Ciêntifica:</div>
+                    <div class="item upg1" onclick="casad1nv2()">Nível 2</div>
+                    <div class="item upg2" onclick="casad1nv3()">Nível 3</div>
+                    <div class="item upg3" onclick="modal1()">Nível Especial</div>
+                </div>
+                <div class="right">
+                    <div class="label">Upgrades na Cidade Histórica:</div>
+                    <div class="item upg1" onclick="casad2nv2()">Nível 2</div>
+                    <div class="item upg2" onclick="casad2nv3()">Nível 3</div>
+                    <div class="item upg3" onclick="modal2()">Nível Especial</div>
+                </div>
+            </div>
+            <div class="investment menu">
+                <div class="title"></div>
+                <div class="left">
+                    <div class="label">Upgrades na Cidade Geográfica:</div>
+                    <div class="item marD" onclick="casad3nv2()">Nível 2</div>
+                    <div class="item marP" onclick="casad3nv3()">Nível 3</div>
+                    <div class="item marS" onclick="modal3()">Nível Especial</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal1" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Qual é o statu que quer aumentar?</p>
+      <div class="statu" onclick="casad1nvespescola()">Inteligência</div>
+      <div class="statu" onclick="casad1nvespigreja()">Sorte</div>
+      <div class="statu" onclick="casad1nvespginasio()">Energia</div>
+    </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal2" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close2">&times;</span>
+        <p>Qual é o statu que quer aumentar?</p>
+        <div class="statu" onclick="casad2nvespescola()">Inteligência</div>
+        <div class="statu" onclick="casad2nvespigreja()">Sorte</div>
+        <div class="statu" onclick="casad2nvespginasio()">Energia</div>
+      </div>
+      </div>
+  
+      <!-- The Modal -->
+      <div id="myModal3" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close3">&times;</span>
+        <p>Qual é o statu que quer aumentar?</p>
+        <div class="statu" onclick="casad3nvespescola()">Inteligência</div>
+        <div class="statu" onclick="casad3nvespigreja()">Sorte</div>
+        <div class="statu" onclick="casad3nvespginasio()">Energia</div>
+      </div>
+      </div>
+
+    
+
+    <script>
+    var playername = sessionStorage.getItem("Nome_do_jogador");
+
+    if (playername == null) {
+      window.location = "login.html";
+    }
+
+        var qenergia = sessionStorage.getItem("QEnergia");
+        document.getElementById('qenergia').innerHTML = qenergia;
+
+        var qpedra = sessionStorage.getItem("QPedras");
+        document.getElementById('qpedra').innerHTML = qpedra;
+
+        var qmadeira = sessionStorage.getItem("QMadeiras");
+        document.getElementById('qmadeira').innerHTML = qmadeira;
+        
+        var qrubi = sessionStorage.getItem("QRubis");
+        document.getElementById('qrubi').innerHTML = qrubi;
+
+        //------------------------------------------------------------
+
+        function modal1(){
+        // Get the modal
+        var modal = document.getElementById("myModal1");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+       
+        modal.style.display = "block";
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        }
+        //-------------------------------------------------------------
+
+        function modal2 () {
+        // Get the modal
+        var modal = document.getElementById("myModal2");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close2")[0];
+        // When the user clicks the button, open the modal 
+          modal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        }
+
+        //-------------------------------------------------------------
+
+        function modal3 () {
+        // Get the modal
+        var modal = document.getElementById("myModal3");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close3")[0];
+        modal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }          
+        }
+    </script> 
+</body>
+</html>

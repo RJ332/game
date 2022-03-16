@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="JS/javas.js"></script>
+</head>
+<body>
+    <!-- Top navigation -->
+<div class="topnav">
+
+    <!-- Centered link -->
+    <div class="topnav-centered">
+      <img class="energia" src="Imagens/energia.png" alt="energia"><p class="pp1">:</p><p class="p1" id="energia"></p>  
+      <img class="rubi" src="Imagens/rubi.png" alt="rubi"><p class="pp2">:</p><p class="p2" id="rubis"></p>
+      <p class="p3" id ="demo"></p>
+    </div>
+    
+    <!-- Left-aligned links -->
+    <a href="login.html"><h1>WESTERN LANDS</h1></a>
+    
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+        <img class="perfil" src="Imagens/icon.png" alt="perfil"><a href="login.html" id="conta"></a>
+    </div>
+  </div>
+
+  <!-- vertival navigation -->
+  <div class="vertical-navbar">  
+  <ul>
+    <li><p class="vp1">Nome do Jipe:</p><p class="vpp1" id="showname"></p></li>
+    <li><p class="vp2">Local do jogador:</p><p class="vpp2" id="showjmname"></p></li>
+    <li><p class="vp3">Estatos:</p></li>
+    <li><p id="statu1" class="vps1">Inteligência: </p></li>
+    <li><p id="statu2" class="vps2">Sorte: </p></li>
+    <li><p id="statu3" class="vps3">Energia: </p></li>
+    <li><p class="vp4">Inventário: </p></li>
+    <div class="box-holder">
+      <button class="box1move"><img src="Imagens/madeira.png" alt="madeira" width="100%"><p class="mt" id="madeira">0</p></button>
+      <button class="box2move"><img src="Imagens/pedra.png" alt="pedra" width="100%"><p class="pt" id="pedra">0</p></button>
+      <button class="box3move"></button>
+      <button class="box4move"></button>
+      <button class="box5move"></button>
+      <button class="box6move"></button>
+    </div>
+  </ul>
+  </div>
+
+  <div style="padding-left:275px">
+    <!-- Casa --> 
+    <img src="Imagens/home.png" class="home" alt="Home" onclick="home()">
+    <div class="popupthome" onclick="popupcasa()"><p>Casa</p>
+      <span class="popuptext1" id="myPopup1">
+        Lugar onde encontro abrigo, todas as minhas coisas estão guardadas aqui. Espero não ser atacado.</span>
+    </div>
+
+    <!-- Gruta --> 
+    <!-- Trigger/Open The Modal -->
+    <img src="Imagens/gruta.png" class="floresta" id="myBtn" alt="floresta" onclick="gruta()">
+    <div class="popuptgf" onclick="popupgruta()"><p>Gruta</p>
+      <span class="popuptext2" id="myPopup2">
+        Sitio pacifico onde posso encontrar todos os materiais que necessito</span>
+    </div>
+
+    <!-- Cidade Ciêntifica --> 
+    <!-- Trigger/Open The Modal -->
+    <img src="" id="casa1" class="cm" alt="" onclick="casa1()">
+    <div id="tcasa1" class="popuptcm" onclick="popupcasa1()"><p>Cidade Ciêntifica</p>
+      <span class="popuptext3" id="myPopup3">
+        Nesta cidade é onde estão agrupados os cientistas</span>
+    </div>
+
+    <!-- Cidade Histórica --> 
+    <!-- Trigger/Open The Modal -->
+    <img src="" id="casa2" class="cp" alt="" onclick="casa2()">
+    <div id="tcasa2" class="popuptcp" onclick="popupcasa2()"><p>Cidade Histórica</p>
+      <span class="popuptext4" id="myPopup4">
+        Aqui existem bastantes historiadores.Uma cidade de Historia</span>
+    </div>
+
+    <!-- Cidade Geográfica --> 
+    <!-- Trigger/Open The Modal -->
+    <img src="" id="casa3" class="ct" alt="" onclick="casa3()">
+    <div id="tcasa3" class="popuptct" onclick="popupcasa3()"><p>Cidade Geográfica</p>
+      <span class="popuptext5" id="myPopup5">
+        Esta é a famosa cidade onde se encontram todos os mapas do mundo, os geógrafos trabalham bastante.</span>
+    </div>
+
+    <!-- Casino --> 
+    <!-- Trigger/Open The Modal -->
+    <img src="Imagens/Casino.png" class="casino" alt="casino" onclick="casino()">
+    <div class="popuptcasino" onclick="popupcasino()"><p>Casino</p>
+      <span class="popuptext6" id="myPopup6">
+        Onde existe sorte também existe azar.</span>
+    </div>
+
+    <!-- Comércio --> 
+    <!-- Trigger/Open The Modal -->
+    <img src="Imagens/Comercio.png" class="comercio" alt="comercio" onclick="comercio()">
+    <div class="popuptcomercio" onclick="popupcomercio()"><p>Comércio</p>
+      <span class="popuptext7" id="myPopup7">
+        Aqui posso trocar tudos os tipos de materiais e até recuperar minhas forças.</span>
+    </div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content"> 
+    <span class="close">&times;</span> 
+    <div class="modal-body">
+      <h3>Minerar</h3><button onclick="minerar()">minerar</button>
+      <h3>Explorar</h3><button onclick="explorar()">explorar</button>
+    </div>
+  </div>
+</div>
+   
+
+   <img src="Imagens/jeep.png" class="jm" alt="jipe-militar" id="jeep"><p class="tjm" id="tjeep"></p>
+   <!-- <img src="jeep_ani.gif" alt="jipe-militar-ani" class="jmani"/> --> 
+  </div>
+  <script>
+
+    var playername = sessionStorage.getItem("Nome_do_jogador");
+    document.getElementById('conta').innerHTML = playername;
+
+    var JMname = sessionStorage.getItem("Nome_do_Jipe");
+    document.getElementById('showname').innerHTML = JMname;
+    document.getElementById('tjeep').innerHTML = JMname;
+
+    if (playername == null) {
+      window.location = "login.html";
+    }
+    //Produtos
+    
+    var QEnergias = sessionStorage.getItem("QEnergia");
+    document.getElementById('energia').innerHTML = QEnergias;
+
+    var QMadeiras = sessionStorage.getItem("QMadeiras");
+    document.getElementById('madeira').innerHTML = QMadeiras;
+
+    var QPedras = sessionStorage.getItem("QPedras");
+    document.getElementById('pedra').innerHTML = QPedras;
+
+    var QRubis = sessionStorage.getItem("QRubis");
+    document.getElementById('rubis').innerHTML = QRubis;
+    
+
+    //Se for iniciante
+    if (document.getElementById('rubis').innerHTML == "") {
+      document.getElementById('rubis').innerHTML = 20;
+    }
+
+    if (document.getElementById('energia').innerHTML == "") {
+      document.getElementById('energia').innerHTML = 5000;
+    }
+
+    if (document.getElementById('madeira').innerHTML == "") {
+      document.getElementById('madeira').innerHTML = 0;
+    }
+
+    if (document.getElementById('pedra').innerHTML == "") {
+      document.getElementById('pedra').innerHTML = 0;
+    }
+
+    //imagensCasa1
+    var nalt1 = sessionStorage.getItem("ImgCasa1");
+    document.getElementById('casa1').alt = nalt1;
+
+    if (document.getElementById('casa1').alt == "null") {
+      document.getElementById('casa1').alt = "casa1";
+      nalt1 = "casa1";
+      sessionStorage.setItem("ImgCasa1", nalt1); 
+    }
+
+    if (document.getElementById('casa1').alt == "casa1") {
+      document.getElementById('casa1').src = "Imagens/casad1nv1.png";
+    } else if (document.getElementById('casa1').alt == "casa1nv2") {
+      document.getElementById('casa1').src = "Imagens/casad1nv2.png";
+      document.getElementById("tcasa1").style.top = "79%"; 
+    } else if (document.getElementById('casa1').alt == "casa1nv3") {
+      document.getElementById('casa1').src = "Imagens/casad1nv3.png";
+      document.getElementById("tcasa1").style.top = "79%"; 
+    } else if (document.getElementById('casa1').alt == "casa1espescola") {
+      document.getElementById('casa1').src = "Imagens/escola.png";
+      document.getElementById("tcasa1").style.top = "79%";
+    } else if (document.getElementById('casa1').alt == "casa1espigreja") {
+      document.getElementById('casa1').src = "Imagens/igreja.png";
+      document.getElementById("tcasa1").style.top = "79%";
+    } else if (document.getElementById('casa1').alt == "casa1espginasio") {
+      document.getElementById('casa1').src = "Imagens/ginasio.png";
+      document.getElementById("tcasa1").style.top = "84%";
+    }
+
+    //imagensCasa2
+    var nalt2 = sessionStorage.getItem("ImgCasa2");
+    document.getElementById('casa2').alt = nalt2;
+
+    if (document.getElementById('casa2').alt == "null") {
+      document.getElementById('casa2').alt = "casa2";
+      nalt2 = "casa2";
+      sessionStorage.setItem("ImgCasa2", nalt2);
+    }
+
+    if (document.getElementById('casa2').alt == "casa2") {
+      document.getElementById('casa2').src = "Imagens/casad2nv1.png";
+    } else if (document.getElementById('casa2').alt == "casa2nv2") {
+      document.getElementById('casa2').src = "Imagens/casad2nv2.png";
+      document.getElementById("tcasa2").style.top = "53%"; 
+    } else if (document.getElementById('casa2').alt == "casa2nv3") {
+      document.getElementById('casa2').src = "Imagens/casad2nv3.png";
+      document.getElementById("tcasa2").style.top = "53%"; 
+    } else if (document.getElementById('casa2').alt == "casa2espescola") {
+      document.getElementById('casa2').src = "Imagens/escola2.png";
+      document.getElementById("tcasa2").style.top = "54%";
+    } else if (document.getElementById('casa2').alt == "casa2espigreja") {
+      document.getElementById('casa2').src = "Imagens/igreja2.png";
+      document.getElementById("tcasa2").style.top = "58%";
+    } else if (document.getElementById('casa2').alt == "casa2espginasio") {
+      document.getElementById('casa2').src = "Imagens/ginasio2.png";
+      document.getElementById("tcasa2").style.top = "59%";
+    }
+
+    //imagensCasa3
+    var nalt3 = sessionStorage.getItem("ImgCasa3");
+    document.getElementById('casa3').alt = nalt3;
+
+    if (document.getElementById('casa3').alt == "null") {
+      document.getElementById('casa3').alt = "casa3";
+      nalt3 = "casa3";
+      sessionStorage.setItem("ImgCasa3", nalt3);
+    }
+
+    if (document.getElementById('casa3').alt == "casa3") {
+      document.getElementById('casa3').src = "Imagens/casad3nv1.png";
+    } else if (document.getElementById('casa3').alt == "casa3nv2") {
+      document.getElementById('casa3').src = "Imagens/casad3nv2.png";
+      document.getElementById("tcasa3").style.top = "79%"; 
+    } else if (document.getElementById('casa3').alt == "casa3nv3") {
+      document.getElementById('casa3').src = "Imagens/casad3nv3.png";
+    } else if (document.getElementById('casa3').alt == "casa3espescola") {
+      document.getElementById('casa3').src = "Imagens/escola2.png";
+      document.getElementById("tcasa3").style.top = "79%";
+    } else if (document.getElementById('casa3').alt == "casa3espigreja") {
+      document.getElementById('casa3').src = "Imagens/igreja2.png";
+      document.getElementById("tcasa3").style.top = "83%";
+    } else if (document.getElementById('casa3').alt == "casa3espginasio") {
+      document.getElementById('casa3').src = "Imagens/ginasio2.png";
+      document.getElementById("tcasa3").style.top = "84%";
+    }
+
+    //Inteligência
+    var statu1 = sessionStorage.getItem("StatuInte");
+    var paragraph1 = document.getElementById("statu1");
+
+    paragraph1.textContent += statu1;
+
+    if (statu1 == null) {
+      document.getElementById('statu1').innerHTML = "Inteligência: 0";
+    } else {
+      document.getElementById("statu1").style.left = "27%";
+    }
+
+    //Sorte 
+    var statu2 = sessionStorage.getItem("StatuSor");
+    var paragraph2 = document.getElementById("statu2");
+
+    paragraph2.textContent += statu2;
+
+    if (statu2 == null) {
+      document.getElementById('statu2').innerHTML = "Sorte: 0";
+    } else {
+      document.getElementById("statu2").style.left = "19%"; 
+    }
+
+    //Energia
+    var statu3 = sessionStorage.getItem("StatuEner");
+    var paragraph3 = document.getElementById("statu3");
+
+    paragraph3.textContent += statu3;
+
+    if (statu3 == null) {
+      document.getElementById('statu3').innerHTML = "Energia: 0";
+    } else {
+      document.getElementById("statu3").style.left = "22%"; 
+    }
+
+    var localn = sessionStorage.getItem("localname");
+    document.getElementById('showjmname').innerHTML = localn;
+
+    if (localn == null) {
+      localn = "Casa";
+      document.getElementById('showjmname').innerHTML = localn;
+    }
+
+    if (localn == "Casa") {
+      document.getElementById("showjmname").style.left = "53%";
+      document.getElementById("jeep").style.left = "80%";
+      document.getElementById("jeep").style.top = "30%";
+      document.getElementById("tjeep").style.left = "80%";
+      document.getElementById("tjeep").style.top = "33%";
+    } else if (localn == "Gruta") {
+      document.getElementById("showjmname").style.left = "53%";
+      document.getElementById("jeep").style.left = "35%";
+      document.getElementById("jeep").style.top = "33%";
+      document.getElementById("tjeep").style.left = "35%";
+      document.getElementById("tjeep").style.top = "36%";  
+    } else if (localn == "Casa1") {
+      document.getElementById("showjmname").style.left = "54.5%";
+      document.getElementById("jeep").style.left = "88%";
+      document.getElementById("jeep").style.top = "71.5%";
+      document.getElementById("tjeep").style.left = "88%";
+      document.getElementById("tjeep").style.top = "74.5%";   
+    } else if (localn == "Casa2") {
+      document.getElementById("showjmname").style.left = "54.5%";
+      document.getElementById("jeep").style.left = "52%";
+      document.getElementById("jeep").style.top = "45%";
+      document.getElementById("tjeep").style.left = "52%";
+      document.getElementById("tjeep").style.top = "48%";    
+    } else if (localn == "Casa3") {
+      document.getElementById("showjmname").style.left = "54.5%";
+      document.getElementById("jeep").style.left = "23.5%";
+      document.getElementById("jeep").style.top = "73%";
+      document.getElementById("tjeep").style.left = "23.5%";
+      document.getElementById("tjeep").style.top = "76%";  
+    } else if (localn == "Casino") {
+      document.getElementById("showjmname").style.left = "55%";
+      document.getElementById("jeep").style.left = "52%";
+      document.getElementById("jeep").style.top = "90.5%";
+      document.getElementById("tjeep").style.left = "52%";
+      document.getElementById("tjeep").style.top = "93.5%";   
+    } else if (localn == "Comércio") {
+      document.getElementById("showjmname").style.left = "58%";
+      document.getElementById("jeep").style.left = "73%";
+      document.getElementById("jeep").style.top = "90%";
+      document.getElementById("tjeep").style.left = "73%";
+      document.getElementById("tjeep").style.top = "93%";
+    }
+</script> 
+</body>
+</html>
